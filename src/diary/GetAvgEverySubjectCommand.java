@@ -4,22 +4,20 @@
  */
 package diary;
 
+import userinterface.Message;
+
 /**
  *
  * @author oleksandrlinenko
  */
-public class GetSumGradesCommand {
-    public static GetSumGradesCommand create() {
-        return new GetSumGradesCommand();
+public class GetAvgEverySubjectCommand {
+    public static GetAvgEverySubjectCommand create() {
+        return new GetAvgEverySubjectCommand();
     }
     
-    public int handle() {
+    public void handle() {
         Data data = Data.getInstance();
-        int sum = 0;
-        for (Grade grade : data.getDiary().getGrades()) {
-            sum += grade.getValue();
-        }
-        
-        return sum;
+        String subjects = data.getDiary().getAvgEverySubject();
+        Message.create().show(subjects);
     }
 }

@@ -4,6 +4,8 @@
  */
 package diary;
 
+import java.util.List;
+
 /**
  *
  * @author oleksandrlinenko

@@ -5,6 +5,7 @@
 package userinterface;
 
 import diary.AddGradeCommand;
+import diary.GetAvgEverySubjectCommand;
 import diary.ReadDataCommand;
 import diary.SaveDataCommand;
 import diary.ShowGradesCommand;
@@ -111,26 +112,6 @@ public class MainMenu {
     }
 
     public void statisticsSubject() {
-        List<String> subjects = new ArrayList<>();
-        Data data = Data.getInstance();
-        for (Grade grade : data.getDiary().getGrades()) {
-            if (!subjects.contains(grade.getSubject().getName())) {
-                subjects.add(grade.getSubject().getName());
-            }
-        }
-
-        for (String subject : subjects) {
-            int sum = 0;
-            int quantity = 0;
-            for (Grade grade : data.getDiary().getGrades()) {
-                if (subject.equals(grade.getSubject().getName())) {
-                    sum += grade.getValue();
-                    quantity++;
-                }
-            }
-            double avg = Math.ceil((double) sum / quantity);
-            System.out.println("Average grade for " + subject + " is " + avg);
-        }
-
+        GetAvgEverySubjectCommand.create().handle();
     }
 }

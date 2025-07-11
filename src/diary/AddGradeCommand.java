@@ -4,6 +4,7 @@
  */
 package diary;
 
+
 /**
  *
  * @author oleksandrlinenko

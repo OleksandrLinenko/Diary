@@ -4,6 +4,8 @@
  */
 package diary;
 
+import userinterface.Message;
+
 /**
  *
  * @author oleksandrlinenko
@@ -14,6 +16,7 @@ public class WriteAvgGradeCommand {
     }
     
     public void handle() {
-        double avg = Math.ceil((double) GetSumGradesCommand.create().handle() / GetGradesQuantityCommand.create().handle());
+        double avg = Data.getInstance().getDiary().getAvg();
+        Message.create().show(String.format("Average grades is %.2f\n", avg));
     }
 }

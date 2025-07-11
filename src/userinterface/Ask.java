@@ -24,6 +24,6 @@ public class Ask {
     
     public String getString(String string) {
         Message.create().show(string);
-        return sc.nextLine();
+        return sc.next();
     }
 }

@@ -25,7 +25,6 @@ public class GetSubjectsListCommand {
                 subjects.add(grade.getSubject().getName());
             }
         }
-        
         return subjects;
     }
 }
