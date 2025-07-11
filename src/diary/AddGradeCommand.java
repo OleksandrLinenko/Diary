@@ -10,6 +10,7 @@ package diary;
  * @author oleksandrlinenko
  */
 public class AddGradeCommand {
+    
     public static AddGradeCommand create() {
         return new AddGradeCommand();
     }

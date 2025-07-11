@@ -12,6 +12,7 @@ import userinterface.Ask;
  * @author oleksandrlinenko
  */
 public class ReadDataCommand {
+    
    public static ReadDataCommand create() {
        return new ReadDataCommand();
    } 

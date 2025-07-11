@@ -11,6 +11,7 @@ import userinterface.Message;
  * @author oleksandrlinenko
  */
 public class GetAvgEverySubjectCommand {
+    
     public static GetAvgEverySubjectCommand create() {
         return new GetAvgEverySubjectCommand();
     }

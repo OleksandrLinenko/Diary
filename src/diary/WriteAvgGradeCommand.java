@@ -11,6 +11,7 @@ import userinterface.Message;
  * @author oleksandrlinenko
  */
 public class WriteAvgGradeCommand {
+    
     public static WriteAvgGradeCommand create() {
         return new WriteAvgGradeCommand();
     }
