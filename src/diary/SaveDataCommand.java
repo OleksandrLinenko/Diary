@@ -12,7 +12,7 @@ import userinterface.Ask;
  * @author oleksandrlinenko
  */
 public class SaveDataCommand {
-    
+
     public static SaveDataCommand create() {
         return new SaveDataCommand();
     }

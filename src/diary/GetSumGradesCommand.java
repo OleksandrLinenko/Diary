@@ -8,15 +8,18 @@ package diary;
  *
  * @author oleksandrlinenko
  */
-public class AddGradeCommand {
-
-    public static AddGradeCommand create() {
-        return new AddGradeCommand();
+public class GetSumGradesCommand {
+    public static GetSumGradesCommand create() {
+        return new GetSumGradesCommand();
     }
     
-    public void handle() {
-        Grade grade = GetGradeCommand.create().handle();
+    public int handle() {
         Data data = Data.getInstance();
-        data.addGrade(grade);
+        int sum = 0;
+        for (Grade grade : data.getDiary().getGrades()) {
+            sum += grade.getValue();
+        }
+        
+        return sum;
     }
 }

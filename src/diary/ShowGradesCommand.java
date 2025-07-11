@@ -12,7 +12,7 @@ import userinterface.Message;
  * @author oleksandrlinenko
  */
 public class ShowGradesCommand {
-    
+
     public static ShowGradesCommand create() {
         return new ShowGradesCommand();
     }
