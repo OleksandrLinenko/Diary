@@ -2,24 +2,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package diary;
+package userinterface;
 
+import diary.AddGradeCommand;
+import diary.ReadDataCommand;
+import diary.SaveDataCommand;
+import diary.ShowGradesCommand;
+import diary.WriteAvgGradeCommand;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
  * @author oleksandrlinenko
  */
-public class UI {
+public class MainMenu {
 
     private Scanner sc = new Scanner(System.in);
+    
+    public static MainMenu create() {
+        return new MainMenu();
+    }
 
-    public void run() throws IOException {
+    public void show() throws IOException {
         boolean konecProgramu = false;
         do {
             vypisMenu();
@@ -82,50 +91,23 @@ public class UI {
     }
 
     public void addGrade() {
-        System.out.print("Set subject: ");
-        String name = sc.nextLine();
-        Subject subject = new Subject(name);
-        System.out.print("Set the grade: ");
-        int gradee = sc.nextInt();
-        Grade grade = new Grade(subject, gradee);
-        Data data = Data.getInstance();
-        data.addGrade(grade);
+        AddGradeCommand.create().handle();
     }
 
     public void showGrades() throws IOException {
-        Data data = Data.getInstance();
-        List<Grade> grades = data.getDiary().getGrades();
-        for (Grade grade : grades) {
-            System.out.println(grade);
-        }
+        ShowGradesCommand.create().handle();
     }
 
     public void saveDataToFile() {
-        System.out.println("Set path to file");
-        String path = sc.nextLine();
-        File file = new File(path);
-        Data data = Data.getInstance();
-        data.saveDiary(file);
+       SaveDataCommand.create().handle();
     }
 
     public void readDataFromFile() {
-        System.out.println("Set path to file");
-        String path = sc.nextLine();
-        File file = new File(path);
-        Data data = Data.getInstance();
-        data.loadDiary(file);
+        ReadDataCommand.create().handle();
     }
 
     public void statistics() {
-        Data data = Data.getInstance();
-        int sum = 0;
-        int quantity = 0;
-        for (Grade grade : data.getDiary().getGrades()) {
-            sum += grade.getValue();
-            quantity += 1;
-        }
-        double avg = Math.ceil((double) sum / quantity);
-        System.out.println("Average grade is " + avg);
+        WriteAvgGradeCommand.create().handle();
     }
 
     public void statisticsSubject() {
@@ -151,5 +133,4 @@ public class UI {
         }
 
     }
-
 }
