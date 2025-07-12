@@ -11,14 +11,15 @@ import userinterface.Message;
  *
  * @author oleksandrlinenko
  */
-public class ShowGradesCommand {
-    
-    public static ShowGradesCommand create() {
-        return new ShowGradesCommand();
-    }
-    
-    public void handle() {
-        List<Grade> grades = Application.getInstance().getDiary().getGrades();
-        ShowList.create().handle(grades);
-    }
+public class ShowList {
+   public static ShowList create() {
+       return new ShowList();
+   } 
+   
+   public void handle(List<Grade> grades) {
+       for (Grade grade : grades) {
+            Message.create().show(grade.toString());
+        }
+        Message.create().show("");
+   }
 }

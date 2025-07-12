@@ -17,7 +17,7 @@ public class WriteAvgGradeCommand {
     }
     
     public void handle() {
-        double avg = Data.getInstance().getDiary().getAvg();
+        double avg = Application.getInstance().getDiary().getAvg();
         Message.create().show(String.format("Average grades is %.2f\n", avg));
     }
 }

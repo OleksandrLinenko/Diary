@@ -4,8 +4,6 @@
  */
 package diary;
 
-import java.util.List;
-
 /**
  *
  * @author oleksandrlinenko
@@ -15,6 +13,9 @@ public class Grade {
     private int value;
 
     public Grade(Subject subject, int value) {
+        if(value <= 0 || value > 5) {
+            throw new IllegalArgumentException("Grade can be in range from 1 to 5");
+        }
         this.subject = subject;
         this.value = value;
     }
@@ -29,6 +30,6 @@ public class Grade {
     
     @Override
     public String toString() {
-        return subject.getName() + ": " + value;
+        return String.format("%s: %d\n", subject.getName(), value);
     }
 }

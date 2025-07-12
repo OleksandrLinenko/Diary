@@ -1,0 +1,6 @@
+Math;1
+Math;2
+Math;1
+Fyzika;2
+Fyzika;1
+Informatika;1

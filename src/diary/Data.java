@@ -7,11 +7,9 @@ package diary;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,26 +19,12 @@ import java.util.List;
  */
 public class Data {
 
-    private static final Data data = new Data();
-    private Diary diary = new Diary();
-
-    private Data() {
-
-    }
-
-    public static Data getInstance() {
-        return data;
-    }
-
-    public Diary getDiary() {
-        return diary;
-    }
-
-    public void addGrade(Grade grade) {
-        diary.addGrade(grade);
+    public static Data create() {
+        return new Data();
     }
 
     public void loadDiary(File file) {
+        List<Grade> diary = Application.getInstance().getDiary().getGrades();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -49,7 +33,7 @@ public class Data {
                     String name = split[0].trim();
                     int value = Integer.parseInt(split[1].trim());
                     Subject subject = new Subject(name);
-                    diary.addGrade(new Grade(subject, value));
+                    Application.getInstance().addGrade(new Grade(subject, value));
                 }
             }
         } catch (IOException ex) {
@@ -58,8 +42,9 @@ public class Data {
     }
 
     public void saveDiary(File file) {
+        List<Grade> diary = Application.getInstance().getDiary().getGrades();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-            for (Grade grades : diary.getGrades()) {
+            for (Grade grades : diary) {
                 bw.write(grades.getSubject().getName() + ";" + grades.getValue());
                 bw.newLine();
             }

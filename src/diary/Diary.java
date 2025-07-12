@@ -43,8 +43,7 @@ public class Diary {
 
     public List<String> getUniqueSubjects() {
         List<String> subjects = new ArrayList<>();
-        Data data = Data.getInstance();
-        for (Grade grade : data.getDiary().getGrades()) {
+        for (Grade grade : grades) {
             if (!subjects.contains(grade.getSubject().getName())) {
                 subjects.add(grade.getSubject().getName());
             }

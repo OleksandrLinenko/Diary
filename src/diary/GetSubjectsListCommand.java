@@ -19,8 +19,7 @@ public class GetSubjectsListCommand {
 
     public List<String> handle() {
         List<String> subjects = new ArrayList<>();
-        Data data = Data.getInstance();
-        for (Grade grade : data.getDiary().getGrades()) {
+        for (Grade grade : Application.getInstance().getDiary().getGrades()) {
             if (!subjects.contains(grade.getSubject().getName())) {
                 subjects.add(grade.getSubject().getName());
             }

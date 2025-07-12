@@ -17,8 +17,7 @@ public class GetAvgEverySubjectCommand {
     }
     
     public void handle() {
-        Data data = Data.getInstance();
-        String subjects = data.getDiary().getAvgEverySubject();
+        String subjects = Application.getInstance().getDiary().getAvgEverySubject();
         Message.create().show(subjects);
     }
 }

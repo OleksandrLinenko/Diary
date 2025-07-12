@@ -20,7 +20,6 @@ public class SaveDataCommand {
     public void handle() {
         String path = Ask.create().getString("Set path to file: ");
         File file = new File(path);
-        Data data = Data.getInstance();
-        data.saveDiary(file);
+        Application.getInstance().getData().saveDiary(file);
     }
 }

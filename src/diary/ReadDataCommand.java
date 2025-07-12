@@ -20,7 +20,6 @@ public class ReadDataCommand {
    public void handle() {
         String path = Ask.create().getString("Set path to file: ");
         File file = new File(path);
-        Data data = Data.getInstance();
-        data.loadDiary(file);
+        Application.getInstance().getData().loadDiary(file);
    }
 }
