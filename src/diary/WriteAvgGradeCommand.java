@@ -4,20 +4,16 @@
  */
 package diary;
 
-import userinterface.Ask;
-
 /**
  *
  * @author oleksandrlinenko
  */
-public class SaveDataCommand {
-
-    public static SaveDataCommand create() {
-        return new SaveDataCommand();
+public class WriteAvgGradeCommand {
+    public static WriteAvgGradeCommand create() {
+        return new WriteAvgGradeCommand();
     }
     
     public void handle() {
-        String path = Ask.create().getString("Set path to file: ");
-        Data.create().saveDiary(path);
+        double avg = Math.ceil((double) GetSumGradesCommand.create().handle() / GetGradesQuantityCommand.create().handle());
     }
 }
