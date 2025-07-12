@@ -17,6 +17,6 @@ public class AddGradeCommand {
     
     public void handle() {
         Grade grade = GetGradeCommand.create().handle();
-        Application.getInstance().addGrade(grade);
+        Application.getInstance().getDiary().addGrade(grade);
     }
 }

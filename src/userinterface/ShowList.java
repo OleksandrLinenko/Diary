@@ -2,17 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package diary;
+package userinterface;
 
+import diary.Grade;
 import java.util.List;
-import userinterface.Message;
 
 /**
  *
  * @author oleksandrlinenko
  */
 public class ShowList {
-   public static ShowList create() {
+    public static ShowList create() {
        return new ShowList();
    } 
    

@@ -9,12 +9,9 @@ import diary.GetAvgEverySubjectCommand;
 import diary.ReadDataCommand;
 import diary.SaveDataCommand;
 import diary.ShowGradesCommand;
-import diary.WriteAvgGradeCommand;
-import java.io.File;
+import diary.ShowAvgGradeCommand;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -108,7 +105,7 @@ public class MainMenu {
     }
 
     public void statistics() {
-        WriteAvgGradeCommand.create().handle();
+        ShowAvgGradeCommand.create().handle();
     }
 
     public void statisticsSubject() {

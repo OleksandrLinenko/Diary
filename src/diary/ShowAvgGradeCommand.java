@@ -10,10 +10,10 @@ import userinterface.Message;
  *
  * @author oleksandrlinenko
  */
-public class WriteAvgGradeCommand {
+public class ShowAvgGradeCommand {
     
-    public static WriteAvgGradeCommand create() {
-        return new WriteAvgGradeCommand();
+    public static ShowAvgGradeCommand create() {
+        return new ShowAvgGradeCommand();
     }
     
     public void handle() {

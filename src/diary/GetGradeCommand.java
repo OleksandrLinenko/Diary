@@ -5,21 +5,29 @@
 package diary;
 
 import userinterface.Ask;
+import userinterface.Message;
 
 /**
  *
  * @author oleksandrlinenko
  */
 public class GetGradeCommand {
-
+    
     public static GetGradeCommand create() {
         return new GetGradeCommand();
     }
-
+    
     public Grade handle() {
-        String name = Ask.create().getString("Set subject: ");
-        Subject subject = new Subject(name);
-        int gradee = Ask.create().getInt("Set grade: ");
-        return new Grade(subject, gradee);       
+        Grade grade = null;
+        try {
+            String name = Ask.create().getString("Set subject: ");
+            Subject subject = new Subject(name);
+            int gradee = Ask.create().getInt("Set grade: ");
+            grade = new Grade(subject, gradee);            
+        } catch (IllegalArgumentException ex) {
+            Message.create().show(ex.getMessage());
+        }
+        
+        return grade;
     }
 }

@@ -11,7 +11,6 @@ package diary;
 public class Application {
 
     private static Application app = new Application();
-    private Data data = new Data();
     private Diary diary = new Diary();
 
     private Application() {
@@ -19,10 +18,6 @@ public class Application {
 
     public static Application getInstance() {
         return app;
-    }
-    
-    public Data getData() {
-        return data;
     }
 
     public Diary getDiary() {

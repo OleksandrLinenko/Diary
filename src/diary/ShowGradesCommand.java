@@ -5,7 +5,7 @@
 package diary;
 
 import java.util.List;
-import userinterface.Message;
+import userinterface.ShowList;
 
 /**
  *
