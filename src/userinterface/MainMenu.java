@@ -5,16 +5,12 @@
 package userinterface;
 
 import diary.AddGradeCommand;
+import diary.ShowAvgEverySubjectCommand;
 import diary.ReadDataCommand;
 import diary.SaveDataCommand;
 import diary.ShowGradesCommand;
-import diary.WriteAvgGradeCommand;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
+import diary.ShowAvgGradeCommand;
 import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
 
 /**
  *
@@ -22,47 +18,50 @@ import java.util.Scanner;
  */
 public class MainMenu {
 
-    private Scanner sc = new Scanner(System.in);
-    
     public static MainMenu create() {
         return new MainMenu();
     }
 
-    public void show() throws IOException {
+    public void show() {
         boolean konecProgramu = false;
+        boolean error;
         do {
-            vypisMenu();
-            int volba = nactiVolbu();
-            konecProgramu = obsluzVolbu(volba);
-        } while (!konecProgramu);
+            error = false;
+            try {
+                menu();
+                int volba = readOption();
+                konecProgramu = doOption(volba);
+            } catch (Exception ex) {
+                error = true;
+            }
+        } while (!konecProgramu || error == true);
     }
 
-    private void vypisMenu() {
-        System.out.println("");
-        System.out.println("Diary");
-        System.out.println("1. Write grades from the diary");
-        System.out.println("2. Add grade to the diary");
-        System.out.println("3. Save new grades to the file");
-        System.out.println("4. Read grades from the file");
-        System.out.println("5. Get average grade from all subjects");
-        System.out.println("6. Get average grade by subject");
-        System.out.println("0. Exit");
+    private void menu() {
+        Message.create().show("");
+        Message.create().show("Diary");
+        Message.create().show("1. Write grades from the diary");
+        Message.create().show("2. Add grade to the diary");
+        Message.create().show("3. Save new grades to the file");
+        Message.create().show("4. Read grades from the file");
+        Message.create().show("5. Get average grade from all subjects");
+        Message.create().show("6. Get average grade by subject");
+        Message.create().show("0. Exit");
 
     }
 
-    private int nactiVolbu() {
-        System.out.print("Zadej volbu: ");
+    private int readOption() {
         int volba;
         try {
-            volba = sc.nextInt();
+            volba = Ask.create().getInt("Pick the option: ");
         } catch (InputMismatchException ex) {
             volba = -1;
         }
-        sc.nextLine();
+        Message.create().show("\n");
         return volba;
     }
 
-    private boolean obsluzVolbu(int volba) throws IOException {
+    private boolean doOption(int volba) {
         switch (volba) {
             case 0:
                 return true;
@@ -85,7 +84,7 @@ public class MainMenu {
                 statisticsSubject();
                 break;
             default:
-                System.out.println("Neplatna volba " + volba);
+                Message.create().show("Undefined option: " + volba);
         }
         return false;
     }
@@ -94,12 +93,12 @@ public class MainMenu {
         AddGradeCommand.create().handle();
     }
 
-    public void showGrades() throws IOException {
+    public void showGrades() {
         ShowGradesCommand.create().handle();
     }
 
     public void saveDataToFile() {
-       SaveDataCommand.create().handle();
+        SaveDataCommand.create().handle();
     }
 
     public void readDataFromFile() {
@@ -107,30 +106,10 @@ public class MainMenu {
     }
 
     public void statistics() {
-        WriteAvgGradeCommand.create().handle();
+        ShowAvgGradeCommand.create().handle();
     }
 
     public void statisticsSubject() {
-        List<String> subjects = new ArrayList<>();
-        Data data = Data.getInstance();
-        for (Grade grade : data.getDiary().getGrades()) {
-            if (!subjects.contains(grade.getSubject().getName())) {
-                subjects.add(grade.getSubject().getName());
-            }
-        }
-
-        for (String subject : subjects) {
-            int sum = 0;
-            int quantity = 0;
-            for (Grade grade : data.getDiary().getGrades()) {
-                if (subject.equals(grade.getSubject().getName())) {
-                    sum += grade.getValue();
-                    quantity++;
-                }
-            }
-            double avg = Math.ceil((double) sum / quantity);
-            System.out.println("Average grade for " + subject + " is " + avg);
-        }
-
+        ShowAvgEverySubjectCommand.create().handle();
     }
 }

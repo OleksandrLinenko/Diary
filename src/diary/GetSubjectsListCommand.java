@@ -4,7 +4,6 @@
  */
 package diary;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,14 +17,6 @@ public class GetSubjectsListCommand {
     }
 
     public List<String> handle() {
-        List<String> subjects = new ArrayList<>();
-        Data data = Data.getInstance();
-        for (Grade grade : data.getDiary().getGrades()) {
-            if (!subjects.contains(grade.getSubject().getName())) {
-                subjects.add(grade.getSubject().getName());
-            }
-        }
-        
-        return subjects;
+        return Application.getInstance().getDiary().getUniqueSubjects();
     }
 }

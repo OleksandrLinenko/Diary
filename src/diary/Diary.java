@@ -22,4 +22,56 @@ public class Diary {
     public void addGrade(Grade grade) {
         grades.add(grade);
     }
+
+    public int getQuantity() {
+        int quantity = 0;
+        for (Grade grade : grades) {
+            quantity += 1;
+        }
+
+        return quantity;
+    }
+
+    public int getSum() {
+        int sum = 0;
+        for (Grade grade : grades) {
+            sum += grade.getValue();
+        }
+
+        return sum;
+    }
+
+    public List<String> getUniqueSubjects() {
+        List<String> subjects = new ArrayList<>();
+        for (Grade grade : grades) {
+            if (!subjects.contains(grade.getSubject().getName())) {
+                subjects.add(grade.getSubject().getName());
+            }
+        }
+
+        return subjects;
+    }
+
+    public String getAvgEverySubject() {
+        StringBuilder sb = new StringBuilder();
+        List<String> subjects = getUniqueSubjects();
+        for (String subject : subjects) {
+            int sum = 0;
+            int quantity = 0;
+            for (Grade grade : grades) {
+                if (subject.equals(grade.getSubject().getName())) {
+                    sum += grade.getValue();
+                    quantity++;
+                }
+            }
+            double avg = Math.ceil((double) sum / quantity);
+            sb.append(String.format("Average grade for %s is %.2f\n", subject, avg));
+        }
+
+        return sb.toString();
+    }
+
+    public double getAvg() {
+        return Math.ceil((double) getSum() / getQuantity());
+    }
 }

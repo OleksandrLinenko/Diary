@@ -5,22 +5,20 @@
 package diary;
 
 import java.util.List;
-import userinterface.Message;
+import userinterface.ShowList;
 
 /**
  *
  * @author oleksandrlinenko
  */
 public class ShowGradesCommand {
+
     public static ShowGradesCommand create() {
         return new ShowGradesCommand();
     }
     
     public void handle() {
-        Data data = Data.getInstance();
-        List<Grade> grades = data.getDiary().getGrades();
-        for (Grade grade : grades) {
-            Message.create().show(grade.toString());
-        }
+        List<Grade> grades = Application.getInstance().getDiary().getGrades();
+        ShowList.create().handle(grades);
     }
 }

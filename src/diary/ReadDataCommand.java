@@ -12,14 +12,13 @@ import userinterface.Ask;
  * @author oleksandrlinenko
  */
 public class ReadDataCommand {
-   public static ReadDataCommand create() {
-       return new ReadDataCommand();
-   } 
-   
-   public void handle() {
+
+    public static ReadDataCommand create() {
+        return new ReadDataCommand();
+    }
+
+    public void handle() {
         String path = Ask.create().getString("Set path to file: ");
-        File file = new File(path);
-        Data data = Data.getInstance();
-        data.loadDiary(file);
-   }
+        Data.create().loadDiary(path);
+    }
 }

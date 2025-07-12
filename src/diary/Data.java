@@ -7,11 +7,9 @@ package diary;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,27 +19,12 @@ import java.util.List;
  */
 public class Data {
 
-    private static final Data data = new Data();
-    private Diary diary = new Diary();
-
-    private Data() {
-
+    public static Data create() {
+        return new Data();
     }
 
-    public static Data getInstance() {
-        return data;
-    }
-
-    public Diary getDiary() {
-        return diary;
-    }
-
-    public void addGrade(Grade grade) {
-        diary.addGrade(grade);
-    }
-
-    public void loadDiary(File file) {
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+    public void loadDiary(String path) {
+        try (BufferedReader br = new BufferedReader(new FileReader(new File(path)))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] split = line.split(";");
@@ -49,7 +32,7 @@ public class Data {
                     String name = split[0].trim();
                     int value = Integer.parseInt(split[1].trim());
                     Subject subject = new Subject(name);
-                    diary.addGrade(new Grade(subject, value));
+                    Application.getInstance().getDiary().addGrade(new Grade(subject, value));
                 }
             }
         } catch (IOException ex) {
@@ -57,9 +40,10 @@ public class Data {
         }
     }
 
-    public void saveDiary(File file) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-            for (Grade grades : diary.getGrades()) {
+    public void saveDiary(String path) {
+        List<Grade> diary = Application.getInstance().getDiary().getGrades();
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File(path)))) {
+            for (Grade grades : diary) {
                 bw.write(grades.getSubject().getName() + ";" + grades.getValue());
                 bw.newLine();
             }

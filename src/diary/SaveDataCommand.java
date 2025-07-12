@@ -4,7 +4,6 @@
  */
 package diary;
 
-import java.io.File;
 import userinterface.Ask;
 
 /**
@@ -12,14 +11,13 @@ import userinterface.Ask;
  * @author oleksandrlinenko
  */
 public class SaveDataCommand {
+
     public static SaveDataCommand create() {
         return new SaveDataCommand();
     }
     
     public void handle() {
         String path = Ask.create().getString("Set path to file: ");
-        File file = new File(path);
-        Data data = Data.getInstance();
-        data.saveDiary(file);
+        Data.create().saveDiary(path);
     }
 }
