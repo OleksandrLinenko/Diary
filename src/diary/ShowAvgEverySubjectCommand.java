@@ -10,10 +10,10 @@ import userinterface.Message;
  *
  * @author oleksandrlinenko
  */
-public class GetAvgEverySubjectCommand {
+public class ShowAvgEverySubjectCommand {
     
-    public static GetAvgEverySubjectCommand create() {
-        return new GetAvgEverySubjectCommand();
+    public static ShowAvgEverySubjectCommand create() {
+        return new ShowAvgEverySubjectCommand();
     }
     
     public void handle() {

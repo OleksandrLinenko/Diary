@@ -17,7 +17,6 @@ public class GetSubjectsListCommand {
     }
 
     public List<String> handle() {
-        List<String> subjects = Application.getInstance().getDiary().getUniqueSubjects();
-        return subjects;
+        return Application.getInstance().getDiary().getUniqueSubjects();
     }
 }

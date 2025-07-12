@@ -19,7 +19,6 @@ public class ReadDataCommand {
 
     public void handle() {
         String path = Ask.create().getString("Set path to file: ");
-        File file = new File(path);
-        Data.create().loadDiary(file);
+        Data.create().loadDiary(path);
     }
 }

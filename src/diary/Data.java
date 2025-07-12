@@ -23,9 +23,8 @@ public class Data {
         return new Data();
     }
 
-    public void loadDiary(File file) {
-        List<Grade> diary = Application.getInstance().getDiary().getGrades();
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+    public void loadDiary(String path) {
+        try (BufferedReader br = new BufferedReader(new FileReader(new File(path)))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] split = line.split(";");
@@ -33,7 +32,7 @@ public class Data {
                     String name = split[0].trim();
                     int value = Integer.parseInt(split[1].trim());
                     Subject subject = new Subject(name);
-                    Application.getInstance().addGrade(new Grade(subject, value));
+                    Application.getInstance().getDiary().addGrade(new Grade(subject, value));
                 }
             }
         } catch (IOException ex) {
@@ -41,9 +40,9 @@ public class Data {
         }
     }
 
-    public void saveDiary(File file) {
+    public void saveDiary(String path) {
         List<Grade> diary = Application.getInstance().getDiary().getGrades();
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File(path)))) {
             for (Grade grades : diary) {
                 bw.write(grades.getSubject().getName() + ";" + grades.getValue());
                 bw.newLine();

@@ -23,9 +23,4 @@ public class Application {
     public Diary getDiary() {
         return diary;
     }
-
-    public void addGrade(Grade grade) {
-        diary.addGrade(grade);
-    }
-
 }

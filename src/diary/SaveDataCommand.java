@@ -4,7 +4,6 @@
  */
 package diary;
 
-import java.io.File;
 import userinterface.Ask;
 
 /**
@@ -19,7 +18,6 @@ public class SaveDataCommand {
     
     public void handle() {
         String path = Ask.create().getString("Set path to file: ");
-        File file = new File(path);
-        Data.create().saveDiary(file);
+        Data.create().saveDiary(path);
     }
 }
